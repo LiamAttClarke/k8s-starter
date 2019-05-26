@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: web-deployment
+  labels:
+    name: web-deployment
+spec:
+  selector:
+    matchLabels:
+      name: web-pod
+  template:
+    metadata:
+      labels:
+        name: web-pod
+    spec:
+      containers:
+        - name: nginx
+          image: represent-web
+          imagePullPolicy: Never
+          ports:
+            - name: web-port
+              containerPort: 80
+

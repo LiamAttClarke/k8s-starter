@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: api-deployment
+  labels:
+    name: api-deployment
+spec:
+  selector:
+    matchLabels:
+      name: api-pod
+  template:
+    metadata:
+      labels:
+        name: api-pod
+    spec:
+      containers:
+        - name: nodejs
+          image: represent-api
+          imagePullPolicy: Never
+          ports:
+            - name: api-port
+              containerPort: 80
+
