@@ -1,17 +1,16 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: web-deployment
-  labels:
-    name: web-deployment
+  name: {{ template "app-chart.fullname" . }}-web-deployment
 spec:
+  replicas: 1
   selector:
     matchLabels:
-      name: web-pod
+      name: {{ template "app-chart.fullname" . }}-web-pod
   template:
     metadata:
       labels:
-        name: web-pod
+        name: {{ template "app-chart.fullname" . }}-web-pod
     spec:
       containers:
         - name: nginx

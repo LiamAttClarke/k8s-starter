@@ -1,0 +1,21 @@
+apiVersion: networking.k8s.io/v1beta1
+kind: Ingress
+metadata:
+  name: {{ template "app-chart.fullname" . }}-ingress
+  annotations:
+    # use the shared ingress-nginx
+    kubernetes.io/ingress.class: "nginx"
+    nginx.ingress.kubernetes.io/rewrite-target: /$2
+spec:
+  rules:
+    - host: represent-app
+      http:
+        paths:
+        - path: /
+          backend:
+            serviceName: {{ template "app-chart.fullname" . }}-web-service
+            servicePort: 80
+        - path: /api(/|$)(.*)
+          backend:
+            serviceName: {{ template "app-chart.fullname" . }}-api-service
+            servicePort: 80

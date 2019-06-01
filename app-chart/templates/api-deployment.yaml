@@ -1,17 +1,16 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: api-deployment
-  labels:
-    name: api-deployment
+  name: {{ template "app-chart.fullname" . }}-api-deployment
 spec:
+  replicas: 1
   selector:
     matchLabels:
-      name: api-pod
+      name: {{ template "app-chart.fullname" . }}-api-pod
   template:
     metadata:
       labels:
-        name: api-pod
+        name: {{ template "app-chart.fullname" . }}-api-pod
     spec:
       containers:
         - name: nodejs
@@ -20,4 +19,6 @@ spec:
           ports:
             - name: api-port
               containerPort: 80
-
+          env:
+          - name: DB_NAME
+            value: {{ .Values.mariadb.db.name }}

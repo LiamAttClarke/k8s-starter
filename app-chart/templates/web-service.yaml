@@ -1,12 +1,10 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: web-service
-  labels:
-    name: web-service
+  name: {{ template "app-chart.fullname" . }}-web-service
 spec:
   selector:
-    name: web-pod
+    name: {{ template "app-chart.fullname" . }}-web-pod
   ports:
     - protocol: TCP
       port: 80

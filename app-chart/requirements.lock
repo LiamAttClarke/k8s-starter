@@ -1,0 +1,9 @@
+dependencies:
+- name: mariadb
+  repository: https://kubernetes-charts.storage.googleapis.com/
+  version: 6.2.2
+- name: nginx-ingress
+  repository: https://kubernetes-charts.storage.googleapis.com/
+  version: 1.6.16
+digest: sha256:75379c0afe40374f7840c19fd2ac1645d9c92d9ec4e9261106077a3338ddb1cc
+generated: "2019-05-31T21:14:13.5469673-04:00"
