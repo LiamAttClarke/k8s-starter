@@ -1,12 +1,11 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: {{ template "app-chart.fullname" . }}-api-service
+  name: {{ .Release.Name }}-api-service
 spec:
   selector:
-    name: {{ template "app-chart.fullname" . }}-api-pod
+    name: {{ .Release.Name }}-api-pod
   ports:
     - protocol: TCP
       port: 80
       targetPort: api-port
-  type: LoadBalancer

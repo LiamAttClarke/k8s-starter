@@ -1,3 +1,6 @@
 mariadb:
   db:
     name: represent-db
+
+apiImage: represent-api
+webImage: represent-web

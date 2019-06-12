@@ -1,20 +1,20 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: {{ template "app-chart.fullname" . }}-api-deployment
+  name: {{ .Release.Name }}-api-deployment
 spec:
   replicas: 1
   selector:
     matchLabels:
-      name: {{ template "app-chart.fullname" . }}-api-pod
+      name: {{ .Release.Name }}-api-pod
   template:
     metadata:
       labels:
-        name: {{ template "app-chart.fullname" . }}-api-pod
+        name: {{ .Release.Name }}-api-pod
     spec:
       containers:
         - name: nodejs
-          image: represent-api
+          image: {{ .Values.apiImage }}
           imagePullPolicy: Never
           ports:
             - name: api-port

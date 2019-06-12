@@ -1,20 +1,20 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: {{ template "app-chart.fullname" . }}-web-deployment
+  name: {{ .Release.Name }}-web-deployment
 spec:
   replicas: 1
   selector:
     matchLabels:
-      name: {{ template "app-chart.fullname" . }}-web-pod
+      name: {{ .Release.Name }}-web-pod
   template:
     metadata:
       labels:
-        name: {{ template "app-chart.fullname" . }}-web-pod
+        name: {{ .Release.Name }}-web-pod
     spec:
       containers:
         - name: nginx
-          image: represent-web
+          image: {{ .Values.webImage }}
           imagePullPolicy: Never
           ports:
             - name: web-port
