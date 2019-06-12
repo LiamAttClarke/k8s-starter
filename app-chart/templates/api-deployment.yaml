@@ -20,5 +20,11 @@ spec:
             - name: api-port
               containerPort: 80
           env:
+          - name: DB_HOST
+            value: {{ .Release.Name }}-postgresql
           - name: DB_NAME
-            value: {{ .Values.mariadb.db.name }}
+            value: {{ .Values.postgresql.postgresqlDatabase }}
+          - name: DB_USER
+            value: {{ .Values.postgresql.postgresqlUsername }}
+          - name: DB_PASS
+            value: {{ .Values.postgresql.postgresqlPassword }}

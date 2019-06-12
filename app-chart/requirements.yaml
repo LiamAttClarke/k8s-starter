@@ -1,7 +1,7 @@
 dependencies:
-  - name: mariadb
+  - name: postgresql
     repository: https://kubernetes-charts.storage.googleapis.com/
-    version: 6.2.2
+    version: 5.2.3
   - name: nginx-ingress
     repository: https://kubernetes-charts.storage.googleapis.com/
     version: 1.6.16

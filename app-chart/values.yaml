@@ -1,6 +1,9 @@
-mariadb:
-  db:
-    name: represent-db
+postgresql:
+  postgresqlUsername: represent-app
+  postgresqlPassword: password123
+  postgresqlDatabase: represent-app
+  service:
+    type: NodePort
 
 apiImage: represent-api
 webImage: represent-web
