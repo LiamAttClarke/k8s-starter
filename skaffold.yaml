@@ -1,0 +1,29 @@
+apiVersion: skaffold/v1beta11
+kind: Config
+build:
+  artifacts:
+    - image: represent-api
+      context: ./api
+      sync:
+        manual:
+          - src: 'api/src/**/*'
+            dest: /usr/src/represent-api
+            strip: api
+    - image: represent-web
+      context: ./web
+      sync:
+        manual:
+          - src: 'web/dist/**/*'
+            dest: '/data/www'
+            strip: web/dist
+deploy:
+  helm:
+    releases:
+      - name: skaffold-dev
+        chartPath: ./app-chart
+        namespace: represent
+        values:
+          apiImage: represent-api
+          webImage: represent-web
+        valuesFiles:
+          - ./app-chart/values.yaml

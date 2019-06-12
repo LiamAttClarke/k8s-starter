@@ -3,37 +3,29 @@ Democracy only functions with an educated and engaged citizenry. 'Represent' is 
 
 ## Getting Started
 
-Install Minikube. A tool to run a local Kubernetes cluster.
-[Install Minikube](https://kubernetes.io/docs/setup/minikube/#installation)
+1. Install dependencies
 
-Install Helm. A tool manage cluster dependencies and perform deployments and rollbacks.
-[Install Helm](https://helm.sh/docs/using_helm/#installing-helm)
+Install [VirtualBox](https://www.virtualbox.org/wiki/Downloads)
 
-### Windows
-1. Ensure Hyper-V is enabled.
-2. Configure Virtual Switch ([guide](https://blogs.technet.microsoft.com/canitpro/2014/03/10/step-by-step-enabling-hyper-v-for-use-on-windows-8-1/))
-3. Open PowerShell as Administrator.
-4. Run:
-```
-minikube start --vm-driver=hyperv
-```
-5. Build Docker images
-```
-minikube docker-env
-# Follow instructions to link cli to minikube's internal docker environment
+Install [Minikube](https://kubernetes.io/docs/setup/minikube/#installation). A tool to run a local Kubernetes cluster.
 
-docker build -t represent-api ./api
-docker build -t represent-web ./web
+Install [Helm](https://helm.sh/docs/using_helm/#installing-helm). A tool for managing cluster dependencies and perform deployments and rollbacks.
+
+Install [Skaffold](https://skaffold.dev/). Skaffold is a command line tool that facilitates continuous development for Kubernetes applications. You can iterate on your application source code locally then deploy to local or remote Kubernetes clusters.
+
+2. Start local K8 cluster (Windows: run PowerShell as Admin):
 ```
-6. Init Helm Tiller
+minikube start --vm-driver=virtualbox
+```
+3. Init Helm Tiller, A K8 Pod that manages the deployment of containers to the cluster.
 ```
 helm init --history-max 200
 ```
-7. Install Helm Chart
+7. Build and deploy containers to local cluster. After deploying the containers Skaffold will watch source code directories for changes and deploy them automatically.
 ```
-helm install app-chart -n represent
+skaffold dev
 ```
-8. Add 'represent-app' hostname to /Windows/System/etc/hosts
+8. Add 'represent-app' hostname to /Windows/System32/drivers/etc/hosts
 ```
 minikube status # get minikube IP address
 # Then add the following line to your hosts file:
@@ -45,6 +37,10 @@ minikube status # get minikube IP address
 ```
 # Get service url
 minikube service web-service --url
+
+# Connect Docker CLI to Minikube docker instance
+minikube docker-env
+# Follow directions
 
 # SSH into docker container running alpine image
 docker ps # fetch docker container_id
@@ -62,4 +58,6 @@ kubectl logs -f <pod_name>
 
 **Issue:** Error message on Windows when trying to run `kubectl create`:
 ```error: SchemaError(io.k8s.api.extensions.v1beta1.PodSecurityPolicySpec): invalid object doesn't have additional properties```
-**Solution:** https://stackoverflow.com/a/55546990
+This may be caused by version mismatch of kubectl which Docker for Desktop installs
+**Solution 1:** Resolve version mismatch: https://stackoverflow.com/a/55546990
+**Solution 2:** Uninstall Docker for Desktop and only install the Docker CLI: https://stackoverflow.com/a/43594065
