@@ -21,7 +21,6 @@ deploy:
     releases:
       - name: skaffold-dev
         chartPath: ./app-chart
-        namespace: represent
         values:
           apiImage: represent-api
           webImage: represent-web

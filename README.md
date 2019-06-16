@@ -21,17 +21,17 @@ minikube start --vm-driver=virtualbox
 ```
 helm init --history-max 200
 ```
-7. Build and deploy containers to local cluster. After deploying the containers Skaffold will watch source code directories for changes and deploy them automatically.
+4. Build and deploy containers to local cluster. After deploying the containers Skaffold will watch source code directories for changes and deploy them automatically.
 ```
 skaffold dev
 ```
-8. Add 'represent-app' hostname to /Windows/System32/drivers/etc/hosts
+5. Add 'represent-app' hostname to /Windows/System32/drivers/etc/hosts
 ```
 minikube status # get minikube IP address
 # Then add the following line to your hosts file:
 <minikube_ip> represent-app
 ```
-9. Finally, access the site by visiting http://represent-app in your browser.
+6. Finally, access the site by visiting http://represent-app in your browser.
 
 ## Cheatsheet
 ```
@@ -59,5 +59,7 @@ kubectl logs -f <pod_name>
 **Issue:** Error message on Windows when trying to run `kubectl create`:
 ```error: SchemaError(io.k8s.api.extensions.v1beta1.PodSecurityPolicySpec): invalid object doesn't have additional properties```
 This may be caused by version mismatch of kubectl which Docker for Desktop installs
+
 **Solution 1:** Resolve version mismatch: https://stackoverflow.com/a/55546990
+
 **Solution 2:** Uninstall Docker for Desktop and only install the Docker CLI: https://stackoverflow.com/a/43594065
