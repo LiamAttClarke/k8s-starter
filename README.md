@@ -1,5 +1,5 @@
-# Represent
-Democracy only functions with an educated and engaged citizenry. 'Represent' is an open platform that seeks to empower citizens through education and a call to action when they can directly affect change in the system.
+# Kubernetes Starter
+This project serves as a starter for future projects built on Kubernetes.
 
 ## Getting Started
 
@@ -29,9 +29,9 @@ skaffold dev
 ```
 minikube status # get minikube IP address
 # Then add the following line to your hosts file:
-<minikube_ip> represent-app
+<minikube_ip> k8-example
 ```
-6. Finally, access the site by visiting http://represent-app in your browser.
+6. Finally, access the site by visiting http://k8-example in your browser.
 
 ## Cheatsheet
 ```

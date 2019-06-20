@@ -1,9 +1,9 @@
 postgresql:
-  postgresqlUsername: represent-app
+  postgresqlUsername: k8-example-user
   postgresqlPassword: password123
-  postgresqlDatabase: represent-app
+  postgresqlDatabase: k8-example-db
   service:
     type: NodePort
 
-apiImage: represent-api
-webImage: represent-web
+apiImage: k8-example-api
+webImage: k8-example-web

@@ -1,6 +1,6 @@
 FROM node:8.16.0-alpine
 
-WORKDIR /usr/src/represent-api
+WORKDIR /usr/src/k8-example-api
 
 COPY package.json .
 COPY package-lock.json .

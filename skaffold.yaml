@@ -2,14 +2,14 @@ apiVersion: skaffold/v1beta11
 kind: Config
 build:
   artifacts:
-    - image: represent-api
+    - image: k8-example-api
       context: ./api
       sync:
         manual:
           - src: 'api/src/**/*'
-            dest: /usr/src/represent-api
+            dest: /usr/src/k8-example-api
             strip: api
-    - image: represent-web
+    - image: k8-example-web
       context: ./web
       sync:
         manual:
@@ -22,7 +22,7 @@ deploy:
       - name: skaffold-dev
         chartPath: ./app-chart
         values:
-          apiImage: represent-api
-          webImage: represent-web
+          apiImage: k8-example-api
+          webImage: k8-example-web
         valuesFiles:
           - ./app-chart/values.yaml
